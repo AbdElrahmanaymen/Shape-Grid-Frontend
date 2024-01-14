@@ -8,7 +8,7 @@ export function useShapesWebSocket(
 ) {
   useEffect(() => {
     // Create a new WebSocket instance
-    const socket = new WebSocket("ws://shapegrid-1b327639b860.herokuapp.com/ws/shapes/");
+    const socket = new WebSocket("wss://shapegrid-1b327639b860.herokuapp.com/ws/shapes/");
 
     // Event listener for WebSocket connection open
     socket.addEventListener("open", () => {

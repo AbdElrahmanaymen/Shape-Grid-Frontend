@@ -66,7 +66,7 @@ export default function SideNavBar() {
 
       {/* Hamburger menu button */}
       <button
-        className="absolute top-4 right-4 inline-flex items-center peer justify-center rounded-md p-2 text-white hover:bg-[#008170] group"
+        className="absolute top-4 right-4 inline-flex items-center peer justify-center rounded-md p-2 text-black dark:text-white hover:bg-[#008170] group"
         onClick={toggleMenu}
       >
         <GiHamburgerMenu

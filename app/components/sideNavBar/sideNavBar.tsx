@@ -1,7 +1,7 @@
 "use client";
 
 // Importing necessary dependencies
-import React, { use } from "react";
+import React, { use, useEffect, useRef } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Image from "next/image";
 import { MdOutlineLogout, MdOutlineSpaceDashboard } from "react-icons/md";
@@ -17,17 +17,43 @@ export default function SideNavBar() {
   // Setting up state variables
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
+  const sideNavBarRef = useRef(null);
 
   // Function to toggle the side navigation menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  /**
+   * Function to handle click outside the side navigation bar.
+   * Closes the side navigation bar if the click target is neither a button nor the side navigation bar itself.
+   * @param event - The mouse event object.
+   */
+  const handleClickOutside = (event: MouseEvent) => {
+    const target = event.target as HTMLElement; // Getting the click target
+    console.log(target) // Logging the click target
+    const isButton = target.closest("button"); // Checking if the click target is a button
+    const isSidebar = target.closest(".side-nav-bar"); // Checking if the click target is the side navigation bar
+
+    if (!isButton && !isSidebar) {
+      setIsOpen(false); // Closing the side navigation bar
+    } 
+  };
+
+  // Add event listener to handle click outside
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside); // Adding event listener to handle click outside
+    return () => {
+      document.removeEventListener("click", handleClickOutside); // Removing event listener to handle click outside
+    };
+  }, []);
+
   // Rendering the SideNavBar component
   return (
     <div className="flex">
       {/* Side navigation menu */}
       <div
+        ref={sideNavBarRef}
         className={`p-12 w-1/2 h-screen bg-[#005B41] fixed z-20 top-0 ${
           isOpen ? "left-0" : "-left-96"
         } lg:left-0 lg:w-60 peer-focus:left-0 peer:transition ease-out delay-150 duration-200`}

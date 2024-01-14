@@ -31,7 +31,7 @@ export default function HomePage() {
       <h1 className="text-xl font-bold text-black  dark:text-white">
         Overview
       </h1>
-      <div className="flex flex-row gap-4 mt-4 sm:flex-col">
+      <div className="flex flex-col gap-4 mt-4 md:flex-row">
         <div className="flex flex-col bg-white rounded-xl p-4">
           <h1 className="text-xl font-bold text-black mt-2 mr-6">Total Shapes</h1>
           <p className="text-gray-500 text-bold text-3xl text-right">{shapes.length}</p>
